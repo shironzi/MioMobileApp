@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import globalStyles from "@/styles/globalStyles";
 
 function AnnouncementEdit() {
   HeaderConfig("Announcement");
@@ -43,7 +44,7 @@ function AnnouncementEdit() {
         editDescription
       );
 
-      if (response.sucess) {
+      if (response.success) {
         console.log(response.message);
         router.back();
       } else {
@@ -60,7 +61,7 @@ function AnnouncementEdit() {
         <View style={{ flexDirection: "column" }}>
           <Text>Title: </Text>
           <TextInput
-            style={styles.inputTitle}
+            style={globalStyles.inputContainer}
             value={editTitle}
             onChangeText={setEditTitle}
             placeholder="Title"
@@ -79,7 +80,7 @@ function AnnouncementEdit() {
             multiline
             placeholder="Enter description…"
             style={[
-              styles.inputDescription,
+              globalStyles.inputContainer,
               { height: Math.max(200, descHeight) },
             ]}
             onContentSizeChange={(e) =>
@@ -127,27 +128,10 @@ const styles = StyleSheet.create({
       android: { elevation: 2 },
     }),
   },
-  inputTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    borderBottomWidth: 1,
-    borderColor: "#ccc",
-    marginBottom: 12,
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-  },
   date: {
     fontSize: 14,
     color: "#888",
     marginBottom: 12,
-  },
-  inputDescription: {
-    fontSize: 16,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 6,
-    padding: 8,
-    backgroundColor: "#fafafa",
   },
   footer: {
     flexDirection: "row",

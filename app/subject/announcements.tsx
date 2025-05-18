@@ -3,7 +3,7 @@ import HeaderConfig from "@/utils/HeaderConfig";
 import { getAnnouncements } from "@/utils/query";
 import { useAuthGuard } from "@/utils/useAuthGuard";
 import MaterialIcon from "@expo/vector-icons/MaterialIcons";
-import { useLocalSearchParams } from "expo-router";
+import {useLocalSearchParams, useRouter} from "expo-router";
 import React, { memo, useEffect, useState } from "react";
 import {
   ScrollView,
@@ -23,6 +23,8 @@ type Announcement = {
 
 function Announcements() {
   HeaderConfig("Announcements");
+  const router = useRouter();
+
   const { subjectId } = useLocalSearchParams<{ subjectId: string }>();
 
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
@@ -76,7 +78,9 @@ function Announcements() {
       <TouchableOpacity
         style={styles.addButton}
         onPress={() => {
-          console.log("announcement");
+          router.push({
+            pathname: "/subject/(sub-details)/announcement/addAnnouncement"
+          })
         }}
       >
         <MaterialIcon name="add" size={30} color="#fff" />

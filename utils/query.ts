@@ -59,6 +59,31 @@ export async function editAnnouncements(
     }
 }
 
+export async function createAnnouncement(subjectId: string, title: string, description: string){
+
+    try{
+        const payload = JSON.stringify({
+            title: title,
+            description: description
+        })
+
+        const {data} = await api.post(
+            `/subject/${subjectId}/announcements/}`,
+            payload,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
+        return data;
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+
 export async function getAssignments(subjectId: string | string[]) {
     try {
         const { data } = await api.get(`/subject/${subjectId}/assignments`)
